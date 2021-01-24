@@ -49,6 +49,15 @@
     draw: db   "Match draw"
     len_draw:  dw   10
 
+    title: db   "TIC TAC TOE"
+    len_title:  dw   11
+
+    proj_by: db   "PROJECT BY"
+    len_projby:  dw   10
+
+    names: db   "MATTI UR REHMAN & ARSLAN"
+    len_names:  dw   24
+
     ;clear screen function
     clrscr:     
         push es
@@ -88,7 +97,7 @@
 
         mov si, [bp + 8]
         mov cx, [bp + 6]
-        mov ah, 0x06 
+        mov ah, 0x06
 
         nextchar: 
             mov al, [si]
@@ -183,9 +192,21 @@
     ;A function that print introductory lines and game structure(GUI).
     ;-----------------------------------------------------------------------------------------------------------------
     structure:
+        ;printing "title"(TIC TAC TOE)
+        mov ax, title
+        mov dx, 330
+        push ax
+        push word [len_title]
+        push dx
+        call printstr
+        pop dx
+        pop word [len_title]
+        pop ax
+
+
         ;printing "massage"(Player 1 (X), Player 2 (O))
         mov ax, message
-        mov dx, 0
+        mov dx, 642
         push ax
         push word [len_massage]
         push dx
@@ -195,139 +216,93 @@
         pop ax
 
 
-        ;printing "var"(   |   |   ) on 160th location
+        ;printing "var"(   |   |   ) on 802th location
         mov ax, ver 
-        mov dx, 160
-        push ax 
-        push word [len_ver]
-        push dx
-        call printstr
-        pop dx
-        pop word [len_ver]
-        pop ax
-
-
-        ;printing "var"(   |   |   ) on 480th location
-        mov ax, ver 
-        mov dx, 480
-        push ax 
-        push word [len_ver]
-        push dx
-        call printstr
-        pop dx
-        pop word [len_ver]
-        pop ax
-
-
-        ;printing "var"(   |   |   ) on 800th location
-        mov ax, ver 
-        mov dx, 800
-        push ax 
-        push word [len_ver]
-        push dx
-        call printstr
-        pop dx
-        pop word [len_ver]
-        pop ax
-
-
-        ;printing "hori"(-----------) on 320th location
-        mov ax, hori
-        mov dx, 320
-        push ax 
-        push word [len_hori]
-        push dx
-        call printstr
-        pop dx
-        pop word [len_hori]
-        pop ax
-
-
-        ;printing "hori"(-----------) on 640th location
-        mov ax, hori
-        mov dx, 640
-        push ax 
-        push word [len_hori]
-        push dx
-        call printstr
-        pop dx
-        pop word [len_hori]
-        pop ax
-
-
-        ;printing "one"(1) on 162th location 
-        mov ax, [one]
-        mov dx, 162
-        push ax 
-        push dx
-        call printnum
-        pop dx
-        pop ax
-
-
-        ;printing "two"(2) on 170th location 
-        mov ax, [two]
-        mov dx, 170
-        push ax 
-        push dx
-        call printnum
-        pop dx
-        pop ax
-
-
-        ;printing "three"(3) on 178th location 
-        mov ax, [three]
-        mov dx, 178
-        push ax 
-        push dx
-        call printnum
-        pop dx
-        pop ax
-
-
-        ;printing "four"(4) on 482th location 
-        mov ax, [four]
-        mov dx, 482
-        push ax 
-        push dx
-        call printnum
-        pop dx
-        pop ax
-
-
-        ;printing "five"(5) on 490th location 
-        mov ax, [five]
-        mov dx, 490
-        push ax 
-        push dx
-        call printnum
-        pop dx
-        pop ax
-
-
-        ;printing "six"(6) on 498th location 
-        mov ax, [six]
-        mov dx, 498
-        push ax 
-        push dx
-        call printnum
-        pop dx
-        pop ax
-
-
-        ;printing "seven"(7) on 802th location 
-        mov ax, [seven]
         mov dx, 802
         push ax 
+        push word [len_ver]
         push dx
-        call printnum
+        call printstr
         pop dx
+        pop word [len_ver]
         pop ax
 
 
-        ;printing "eight"(8) on 810th location 
-        mov ax, [eight]
-        mov dx, 810
+        ;printing "var"(   |   |   ) on 1122th location
+        mov ax, ver 
+        mov dx, 1122
+        push ax 
+        push word [len_ver]
+        push dx
+        call printstr
+        pop dx
+        pop word [len_ver]
+        pop ax
+
+
+        ;printing "var"(   |   |   ) on 1442th location
+        mov ax, ver 
+        mov dx, 1442
+        push ax 
+        push word [len_ver]
+        push dx
+        call printstr
+        pop dx
+        pop word [len_ver]
+        pop ax
+
+
+        ;printing "hori"(-----------) on 962th location
+        mov ax, hori
+        mov dx, 962
+        push ax 
+        push word [len_hori]
+        push dx
+        call printstr
+        pop dx
+        pop word [len_hori]
+        pop ax
+
+
+        ;printing "hori"(-----------) on 1282th location
+        mov ax, hori
+        mov dx, 1282
+        push ax 
+        push word [len_hori]
+        push dx
+        call printstr
+        pop dx
+        pop word [len_hori]
+        pop ax
+
+
+        ;printing "hori"(PROJECT BY) on 3646th location
+        mov ax, proj_by
+        mov dx, 3646
+        push ax 
+        push word [len_projby]
+        push dx
+        call printstr
+        pop dx
+        pop word [len_projby]
+        pop ax
+
+
+        ;printing "hori"(MATTI UR REHMAN & ARSLAN) on 3790th location
+        mov ax, names
+        mov dx, 3790
+        push ax 
+        push word [len_names]
+        push dx
+        call printstr
+        pop dx
+        pop word [len_names]
+        pop ax
+
+
+        ;printing "one"(1) on 804th location 
+        mov ax, [one]
+        mov dx, 804
         push ax 
         push dx
         call printnum
@@ -335,9 +310,79 @@
         pop ax
 
 
-        ;printing "nine"(9) on 818th location 
+        ;printing "two"(2) on 812th location 
+        mov ax, [two]
+        mov dx, 812
+        push ax 
+        push dx
+        call printnum
+        pop dx
+        pop ax
+
+
+        ;printing "three"(3) on 820th location 
+        mov ax, [three]
+        mov dx, 820
+        push ax 
+        push dx
+        call printnum
+        pop dx
+        pop ax
+
+
+        ;printing "four"(4) on 1124th location 
+        mov ax, [four]
+        mov dx, 1124
+        push ax 
+        push dx
+        call printnum
+        pop dx
+        pop ax
+
+
+        ;printing "five"(5) on 1132th location 
+        mov ax, [five]
+        mov dx, 1132
+        push ax 
+        push dx
+        call printnum
+        pop dx
+        pop ax
+
+
+        ;printing "six"(6) on 1140th location 
+        mov ax, [six]
+        mov dx, 1140
+        push ax 
+        push dx
+        call printnum
+        pop dx
+        pop ax
+
+
+        ;printing "seven"(7) on 1444th location 
+        mov ax, [seven]
+        mov dx, 1444
+        push ax 
+        push dx
+        call printnum
+        pop dx
+        pop ax
+
+
+        ;printing "eight"(8) on 1452th location 
+        mov ax, [eight]
+        mov dx, 1452
+        push ax 
+        push dx
+        call printnum
+        pop dx
+        pop ax
+
+
+        ;printing "nine"(9) on 1460th location 
         mov ax, [nine]
-        mov dx, 818
+        mov dx, 1460
         push ax 
         push dx
         call printnum
@@ -416,10 +461,10 @@
     ;"condition2" end
 
     ;-----------------------------------------------------------------------------------------------------------------
-    ;Print 'X' at (1) 162th location, setting value in Array as well.
+    ;Print 'X' at (1) 804th location, setting value in Array as well.
     c1:
         mov ax, X
-        mov dx, 162
+        mov dx, 804
         mov bx, 1
         mov [Array + 0], bx
         push ax
@@ -434,10 +479,10 @@
         jmp jump1
         
 
-    ;Print 'X' at (2) 170th location, setting value in Array as well.
+    ;Print 'X' at (2) 812th location, setting value in Array as well.
     c2:
         mov ax, X
-        mov dx, 170
+        mov dx, 812
         mov bx, 1
         mov [Array + 2], bx
         push ax
@@ -452,10 +497,10 @@
         jmp jump1
 
 
-    ;Print 'X' at (3) 178th location, setting value in Array as well.
+    ;Print 'X' at (3) 820th location, setting value in Array as well.
     c3:
         mov ax, X
-        mov dx, 178
+        mov dx, 820
         mov bx, 1
         mov [Array + 4], bx
         push ax
@@ -470,10 +515,10 @@
         jmp jump1
 
 
-    ;Print 'X' at (4) 482th location, setting value in Array as well.
+    ;Print 'X' at (4) 1124th location, setting value in Array as well.
     c4:
         mov ax, X
-        mov dx, 482
+        mov dx, 1124
         mov bx, 1
         mov [Array + 6], bx
         push ax
@@ -488,10 +533,10 @@
         jmp jump1
 
 
-    ;Print 'X' at (5) 490th location, setting value in Array as well.
+    ;Print 'X' at (5) 1132th location, setting value in Array as well.
     c5:
         mov ax, X
-        mov dx, 490
+        mov dx, 1132
         mov bx, 1
         mov [Array + 8], bx
         push ax
@@ -506,10 +551,10 @@
         jmp jump1
 
 
-    ;Print 'X' at (6) 498th location, setting value in Array as well.
+    ;Print 'X' at (6) 1140th location, setting value in Array as well.
     c6:
         mov ax, X
-        mov dx, 498
+        mov dx, 1140
         mov bx, 1
         mov [Array + 10], bx
         push ax
@@ -524,10 +569,10 @@
         jmp jump1
 
 
-    ;Print 'X' at (7) 802th location, setting value in Array as well.
+    ;Print 'X' at (7) 1444th location, setting value in Array as well.
     c7:
         mov ax, X
-        mov dx, 802
+        mov dx, 1444
         mov bx, 1
         mov [Array + 12], bx
         push ax
@@ -542,10 +587,10 @@
         jmp jump1
 
 
-    ;Print 'X' at (8) 810th location, setting value in Array as well.
+    ;Print 'X' at (8) 1452th location, setting value in Array as well.
     c8:
         mov ax, X
-        mov dx, 810
+        mov dx, 1452
         mov bx, 1
         mov [Array + 14], bx
         push ax
@@ -560,10 +605,10 @@
         jmp jump1
 
 
-    ;Print 'X' at (9) 818th location, setting value in Array as well.
+    ;Print 'X' at (9) 1460th location, setting value in Array as well.
     c9:
         mov ax, X
-        mov dx, 818
+        mov dx, 1460
         mov bx, 1
         mov [Array + 16], bx
         push ax
@@ -581,10 +626,10 @@
 
 
     ;-----------------------------------------------------------------------------------------------------------------
-    ;Print 'O' at (1) 162th location, setting value in Array as well.
+    ;Print 'O' at (1) 804th location, setting value in Array as well.
     o1:
         mov ax, O
-        mov dx, 162
+        mov dx, 804
         mov bx, 2
         mov [Array + 0], bx
         push ax
@@ -599,10 +644,10 @@
         jmp jump2        
 
 
-    ;Print 'O' at (2) 170th location, setting value in Array as well.
+    ;Print 'O' at (2) 812th location, setting value in Array as well.
     o2:
         mov ax, O
-        mov dx, 170
+        mov dx, 812
         mov bx, 2
         mov [Array + 2], bx
         push ax
@@ -617,10 +662,10 @@
         jmp jump2        
 
 
-    ;Print 'O' at (3) 178th location, setting value in Array as well.
+    ;Print 'O' at (3) 820th location, setting value in Array as well.
     o3:
         mov ax, O
-        mov dx, 178
+        mov dx, 820
         mov bx, 2
         mov [Array + 4], bx
         push ax
@@ -635,10 +680,10 @@
         jmp jump2
         
 
-    ;Print 'O' at (4) 482th location, setting value in Array as well.
+    ;Print 'O' at (4) 1124th location, setting value in Array as well.
     o4:
         mov ax, O
-        mov dx, 482
+        mov dx, 1124
         mov bx, 2
         mov [Array + 6], bx    
         push ax
@@ -653,10 +698,10 @@
         jmp jump2
         
 
-    ;Print 'O' at (5) 490th location, setting value in Array as well.
+    ;Print 'O' at (5) 1132th location, setting value in Array as well.
     o5:
         mov ax, O
-        mov dx, 490
+        mov dx, 1132
         mov bx, 2
         mov [Array + 8], bx    
         push ax
@@ -671,10 +716,10 @@
         jmp jump2
         
 
-    ;Print 'O' at (6) 498th location, setting value in Array as well.
+    ;Print 'O' at (6) 1140th location, setting value in Array as well.
     o6:
         mov ax, O
-        mov dx, 498
+        mov dx, 1140
         mov bx, 2
         mov [Array + 10], bx    
         push ax
@@ -689,10 +734,10 @@
         jmp jump2
         
 
-    ;Print 'O' at (7) 802th location, setting value in Array as well.
+    ;Print 'O' at (7) 1444th location, setting value in Array as well.
     o7:
         mov ax, O
-        mov dx, 802
+        mov dx, 1444
         mov bx, 2
         mov [Array + 12], bx    
         push ax
@@ -707,10 +752,10 @@
         jmp jump2
         
 
-    ;Print 'O' at (8) 810th location, setting value in Array as well.
+    ;Print 'O' at (8) 1452th location, setting value in Array as well.
     o8:
         mov ax, O
-        mov dx, 810
+        mov dx, 1452
         mov bx, 2
         mov [Array + 14], bx    
         push ax
@@ -725,10 +770,10 @@
         jmp jump2
         
 
-    ;Print 'O' at (9) 818th location, setting value in Array as well.
+    ;Print 'O' at (9) 1460th location, setting value in Array as well.
     o9:
         mov ax, O
-        mov dx, 818
+        mov dx, 1460
         mov bx, 2
         mov [Array + 16], bx    
         push ax
@@ -768,9 +813,29 @@
         je abc
         jmp again
 
+
+    aa5:
+        mov bx, 1
+        cmp bx, [Array + 2]
+        je abc
+        jmp again
+
+
+    aa6:
+        mov bx, 1
+        cmp bx, [Array + 6]
+        je abc
+        jmp again
+
+
+    aa7:
+        mov bx, 1
+        cmp bx, [Array + 8]
+        je abc
+        jmp again
+
+
     aa1:
-
-
         mov bx, 1
         cmp bx, [Array + 2]
         je aa2
@@ -781,7 +846,16 @@
         cmp bx, [Array + 8]
         je aa4
 
-        jmp again
+        cmp bx, [Array + 4]
+        je aa5
+
+        cmp bx, [Array + 12]
+        je aa6
+
+        cmp bx, [Array + 16]
+        je aa7
+
+        jmp logic3
 
     bb3:
         mov bx, 1
@@ -796,6 +870,19 @@
         je abc
         jmp again 
 
+    bb4:
+        mov bx, 1
+        cmp bx, [Array + 0]
+        je abc
+        jmp again 
+
+
+    bb5:
+        mov bx, 1
+        cmp bx, [Array + 8]
+        je abc
+        jmp again 
+
 
     bb1:
         mov bx, 1
@@ -805,7 +892,13 @@
         cmp bx, [Array + 8]
         je bb3
 
-        jmp again
+        cmp bx, [Array + 4]
+        je bb4
+
+        cmp bx, [Array + 14]
+        je bb5
+
+        jmp logic4
 
 
     cc2:
@@ -827,6 +920,27 @@
         je abc
         jmp again
 
+
+    cc5:
+        mov bx, 1
+        cmp bx, [Array + 2]
+        je abc
+        jmp again
+
+    cc6:
+        mov bx, 1
+        cmp bx, [Array + 10]
+        je abc
+        jmp again
+
+
+    cc7:
+        mov bx, 1
+        cmp bx, [Array + 8]
+        je abc
+        jmp again
+
+
     cc1:
         mov bx, 1
         cmp bx, [Array + 2]
@@ -838,7 +952,16 @@
         cmp bx, [Array + 8]
         je cc4
 
-        jmp again
+        cmp bx, [Array + 0]
+        je cc5
+
+        cmp bx, [Array + 16]
+        je cc6
+
+        cmp bx, [Array + 12]
+        je cc7
+
+        jmp logic5
 
 
     dd3:
@@ -855,6 +978,20 @@
         jmp again 
 
 
+    dd4:
+        mov bx, 1
+        cmp bx, [Array + 0]
+        je abc
+        jmp again 
+
+
+    dd5:
+        mov bx, 1
+        cmp bx, [Array + 8]
+        je abc
+        jmp again 
+
+
     dd1:
         mov bx, 1
         cmp bx, [Array + 0]
@@ -862,6 +999,97 @@
 
         cmp bx, [Array + 8]
         je dd3
+
+        cmp bx, [Array + 12]
+        je dd4
+
+        cmp bx, [Array + 10]
+        je dd5
+
+        jmp again
+
+
+    ee2:
+        mov bx, 1
+        cmp bx, [Array + 10]
+        je abc
+        jmp again 
+
+
+    ee3:
+        mov bx, 1
+        cmp bx, [Array + 6]
+        je abc
+        jmp again 
+
+
+    ee4:
+        mov bx, 1
+        cmp bx, [Array + 14]
+        je abc
+        jmp again 
+
+
+    ee5:
+        mov bx, 1
+        cmp bx, [Array + 2]
+        je abc
+        jmp again
+
+
+    ee6:
+        mov bx, 1
+        cmp bx, [Array + 16]
+        je abc
+        jmp again 
+
+
+    ee7:
+        mov bx, 1
+        cmp bx, [Array + 0]
+        je abc
+        jmp again 
+
+
+    ee8:
+        mov bx, 1
+        cmp bx, [Array + 12]
+        je abc
+        jmp again 
+
+
+    ee9:
+        mov bx, 1
+        cmp bx, [Array + 4]
+        je abc
+        jmp again
+
+
+    ee1:
+        mov bx, 1
+        cmp bx, [Array + 6]
+        je ee2
+
+        cmp bx, [Array + 10]
+        je ee3
+
+        cmp bx, [Array + 2]
+        je ee4
+
+        cmp bx, [Array + 14]
+        je ee5
+
+        cmp bx, [Array + 0]
+        je ee6
+
+        cmp bx, [Array + 16]
+        je ee7
+
+        cmp bx, [Array + 4]
+        je ee8
+
+        cmp bx, [Array + 12]
+        je ee9
 
         jmp again
 
@@ -880,6 +1108,20 @@
         jmp again 
 
 
+    ff4:
+        mov bx, 1
+        cmp bx, [Array + 4]
+        je abc
+        jmp again 
+
+
+    ff5:
+        mov bx, 1
+        cmp bx, [Array + 8]
+        je abc
+        jmp again 
+
+
     ff1:
         mov bx, 1
         cmp bx, [Array + 4]
@@ -887,6 +1129,12 @@
 
         cmp bx, [Array + 8]
         je ff3
+
+        cmp bx, [Array + 16]
+        je ff4
+
+        cmp bx, [Array + 6]
+        je ff5
 
         jmp again
 
@@ -910,6 +1158,27 @@
         je abc
         jmp again
 
+
+    gg5:
+        mov bx, 1
+        cmp bx, [Array + 6]
+        je abc
+        jmp again
+
+    gg6:
+        mov bx, 1
+        cmp bx, [Array + 14]
+        je abc
+        jmp again
+
+
+    gg7:
+        mov bx, 1
+        cmp bx, [Array + 8]
+        je abc
+        jmp again
+
+
     gg1:
         mov bx, 1
         cmp bx, [Array + 6]
@@ -921,6 +1190,14 @@
         cmp bx, [Array + 14]
         je gg4
 
+        cmp bx, [Array + 0]
+        je gg5
+
+        cmp bx, [Array + 16]
+        je gg6
+
+        cmp bx, [Array + 4]
+        je gg7
         jmp again
 
 
@@ -935,7 +1212,21 @@
         mov bx, 1
         cmp bx, [Array + 16]
         je abc
+        jmp again
+
+
+    hh4:
+        mov bx, 1
+        cmp bx, [Array + 12]
+        je abc
         jmp again 
+
+
+    hh5:
+        mov bx, 1
+        cmp bx, [Array + 8]
+        je abc
+        jmp again
 
 
     hh1:
@@ -945,6 +1236,12 @@
 
         cmp bx, [Array + 8]
         je hh3
+
+        cmp bx, [Array + 16]
+        je hh4
+
+        cmp bx, [Array + 2]
+        je hh5
 
         jmp again
 
@@ -968,6 +1265,27 @@
         je abc
         jmp again
 
+
+    ii5:
+        mov bx, 1
+        cmp bx, [Array + 10]
+        je abc
+        jmp again
+
+    ii6:
+        mov bx, 1
+        cmp bx, [Array + 8]
+        je abc
+        jmp again
+
+
+    ii7:
+        mov bx, 1
+        cmp bx, [Array + 14]
+        je abc
+        jmp again
+
+
     ii1:
         mov bx, 1
         cmp bx, [Array + 10]
@@ -979,40 +1297,171 @@
         cmp bx, [Array + 14]
         je ii4
 
+        cmp bx, [Array + 4]
+        je ii5
+
+        cmp bx, [Array + 0]
+        je ii6
+
+        cmp bx, [Array + 12]
+        je ii7
+
         jmp again
 
 
     ;logic for "X's"
     logic1:
         mov bx, 1
-        cmp bx, [Array + 0]
-        je aa1
-
-        cmp bx, [Array + 2]
-        je bb1
-
-        cmp bx, [Array + 4]
-        je cc1
-
-        cmp bx, [Array + 6]
-        je dd1
-
-        cmp bx, [Array + 10]
-        je ff1
-
-        cmp bx, [Array + 12]
-        je gg1
-
-        cmp bx, [Array + 14]
-        je hh1
-
         cmp bx, [Array + 16]
         je ii1
 
+        mov bx, 1
+        cmp bx, [Array + 14]
+        je hh1
+
+        mov bx, 1
+        cmp bx, [Array + 12]
+        je gg1
+
+        mov bx, 1
+        cmp bx, [Array + 10]
+        je ff1
+
+        mov bx, 1
+        cmp bx, [Array + 8]
+        je ee1
+
+        mov bx, 1        
+        cmp bx, [Array + 6]
+        je dd1
+
+        mov bx, 1
+        cmp bx, [Array + 4]
+        je cc1
+
+        mov bx, 1
+        cmp bx, [Array + 2]
+        je bb1
+        
+        mov bx, 1
+        cmp bx, [Array + 0]
+        je aa1
+
         jmp again
+
+
+    logic3:
+        mov bx, 1
+        cmp bx, [Array + 16]
+        je ii1
+
+        mov bx, 1
+        cmp bx, [Array + 14]
+        je hh1
+
+        mov bx, 1
+        cmp bx, [Array + 12]
+        je gg1
+
+        mov bx, 1
+        cmp bx, [Array + 10]
+        je ff1
+
+        mov bx, 1
+        cmp bx, [Array + 8]
+        je ee1
+
+        mov bx, 1        
+        cmp bx, [Array + 6]
+        je dd1
+
+        mov bx, 1
+        cmp bx, [Array + 4]
+        je cc1
+
+        mov bx, 1
+        cmp bx, [Array + 2]
+        je bb1
+
+
+        jmp again
+
+
+
+    logic4:
+        mov bx, 1
+        cmp bx, [Array + 16]
+        je ii1
+
+        mov bx, 1
+        cmp bx, [Array + 14]
+        je hh1
+
+        mov bx, 1
+        cmp bx, [Array + 12]
+        je gg1
+
+        mov bx, 1
+        cmp bx, [Array + 10]
+        je ff1
+
+        mov bx, 1
+        cmp bx, [Array + 8]
+        je ee1
+
+        mov bx, 1        
+        cmp bx, [Array + 6]
+        je dd1
+
+        mov bx, 1
+        cmp bx, [Array + 4]
+        je cc1
+        
+        mov bx, 1
+        cmp bx, [Array + 0]
+        je aa1
+
+
+        jmp again
+
+    logic5:
+        mov bx, 1
+        cmp bx, [Array + 16]
+        je ii1
+
+        mov bx, 1
+        cmp bx, [Array + 14]
+        je hh1
+
+        mov bx, 1
+        cmp bx, [Array + 12]
+        je gg1
+
+        mov bx, 1
+        cmp bx, [Array + 10]
+        je ff1
+
+        mov bx, 1
+        cmp bx, [Array + 8]
+        je ee1
+
+        mov bx, 1        
+        cmp bx, [Array + 6]
+        je dd1
+
+
+        mov bx, 1
+        cmp bx, [Array + 2]
+        je bb1
+        
+        mov bx, 1
+        cmp bx, [Array + 0]
+        je aa1
+
+        jmp again
+
     ;-----------------------------------------------------------------------------------------------------------------
     ;end of Possibles of 'X'
-
 
 
 
@@ -1037,9 +1486,29 @@
         je def
         jmp again2
 
+
+    _aa5:
+        mov bx, 2
+        cmp bx, [Array + 2]
+        je def
+        jmp again2
+
+
+    _aa6:
+        mov bx, 2
+        cmp bx, [Array + 6]
+        je def
+        jmp again2
+
+
+    _aa7:
+        mov bx, 2
+        cmp bx, [Array + 8]
+        je def
+        jmp again2
+
+
     _aa1:
-
-
         mov bx, 2
         cmp bx, [Array + 2]
         je _aa2
@@ -1050,7 +1519,16 @@
         cmp bx, [Array + 8]
         je _aa4
 
-        jmp again2
+        cmp bx, [Array + 4]
+        je _aa5
+
+        cmp bx, [Array + 12]
+        je _aa6
+
+        cmp bx, [Array + 16]
+        je _aa7
+
+        jmp logic6
 
     _bb3:
         mov bx, 2
@@ -1066,6 +1544,20 @@
         jmp again2 
 
 
+    _bb4:
+        mov bx, 2
+        cmp bx, [Array + 0]
+        je def
+        jmp again2 
+
+
+    _bb5:
+        mov bx, 2
+        cmp bx, [Array + 8]
+        je def
+        jmp again2 
+
+
     _bb1:
         mov bx, 2
         cmp bx, [Array + 0]
@@ -1074,7 +1566,13 @@
         cmp bx, [Array + 8]
         je _bb3
 
-        jmp again2
+        cmp bx, [Array + 4]
+        je _bb4
+
+        cmp bx, [Array + 14]
+        je _bb5
+
+        jmp logic7
 
 
     _cc2:
@@ -1096,6 +1594,27 @@
         je def
         jmp again2
 
+
+    _cc5:
+        mov bx, 2
+        cmp bx, [Array + 2]
+        je def
+        jmp again2
+
+    _cc6:
+        mov bx, 2
+        cmp bx, [Array + 10]
+        je def
+        jmp again2
+
+
+    _cc7:
+        mov bx, 2
+        cmp bx, [Array + 8]
+        je def
+        jmp again2
+
+
     _cc1:
         mov bx, 2
         cmp bx, [Array + 2]
@@ -1107,7 +1626,16 @@
         cmp bx, [Array + 8]
         je _cc4
 
-        jmp again2
+        cmp bx, [Array + 0]
+        je _cc5
+
+        cmp bx, [Array + 16]
+        je _cc6
+
+        cmp bx, [Array + 12]
+        je _cc7
+
+        jmp logic8
 
 
     _dd3:
@@ -1124,6 +1652,20 @@
         jmp again2 
 
 
+    _dd4:
+        mov bx, 2
+        cmp bx, [Array + 0]
+        je def
+        jmp again2
+
+
+    _dd5:
+        mov bx, 2
+        cmp bx, [Array + 8]
+        je def
+        jmp again2
+
+
     _dd1:
         mov bx, 2
         cmp bx, [Array + 0]
@@ -1131,6 +1673,97 @@
 
         cmp bx, [Array + 8]
         je _dd3
+
+        cmp bx, [Array + 12]
+        je _dd4
+
+        cmp bx, [Array + 10]
+        je _dd5
+
+        jmp again2
+
+
+    _ee2:
+        mov bx, 2
+        cmp bx, [Array + 10]
+        je def
+        jmp again2 
+
+
+    _ee3:
+        mov bx, 2
+        cmp bx, [Array + 6]
+        je def
+        jmp again2
+
+
+    _ee4:
+        mov bx, 2
+        cmp bx, [Array + 14]
+        je def
+        jmp again2
+
+
+    _ee5:
+        mov bx, 2
+        cmp bx, [Array + 2]
+        je def
+        jmp again2
+
+
+    _ee6:
+        mov bx, 2
+        cmp bx, [Array + 16]
+        je def
+        jmp again2
+
+
+    _ee7:
+        mov bx, 2
+        cmp bx, [Array + 0]
+        je def
+        jmp again2
+
+
+    _ee8:
+        mov bx, 2
+        cmp bx, [Array + 12]
+        je def
+        jmp again2
+
+
+    _ee9:
+        mov bx, 2
+        cmp bx, [Array + 4]
+        je def
+        jmp again2
+
+
+    _ee1:
+        mov bx, 1
+        cmp bx, [Array + 6]
+        je _ee2
+
+        cmp bx, [Array + 10]
+        je _ee3
+
+        cmp bx, [Array + 2]
+        je _ee4
+
+        cmp bx, [Array + 14]
+        je _ee5
+
+        cmp bx, [Array + 0]
+        je _ee6
+
+        cmp bx, [Array + 16]
+        je _ee7
+
+        cmp bx, [Array + 4]
+        je _ee8
+
+        cmp bx, [Array + 12]
+        je _ee9
 
         jmp again2
 
@@ -1149,6 +1782,20 @@
         jmp again2
 
 
+    _ff4:
+        mov bx, 2
+        cmp bx, [Array + 4]
+        je def
+        jmp again2
+
+
+    _ff5:
+        mov bx, 2
+        cmp bx, [Array + 8]
+        je def
+        jmp again2
+
+
     _ff1:
         mov bx, 2
         cmp bx, [Array + 4]
@@ -1156,6 +1803,12 @@
 
         cmp bx, [Array + 8]
         je _ff3
+
+        cmp bx, [Array + 16]
+        je _ff4
+
+        cmp bx, [Array + 6]
+        je _ff5
 
         jmp again2
 
@@ -1179,6 +1832,26 @@
         je def
         jmp again2
 
+
+    _gg5:
+        mov bx, 2
+        cmp bx, [Array + 6]
+        je def
+        jmp again2
+
+    _gg6:
+        mov bx, 2
+        cmp bx, [Array + 14]
+        je def
+        jmp again2
+
+    _gg7:
+        mov bx, 2
+        cmp bx, [Array + 8]
+        je def
+        jmp again2
+
+
     _gg1:
         mov bx, 2
         cmp bx, [Array + 6]
@@ -1189,6 +1862,15 @@
 
         cmp bx, [Array + 14]
         je _gg4
+
+        cmp bx, [Array + 0]
+        je _gg5
+
+        cmp bx, [Array + 16]
+        je _gg6
+
+        cmp bx, [Array + 4]
+        je _gg7
 
         jmp again2
 
@@ -1207,6 +1889,20 @@
         jmp again2 
 
 
+    _hh4:
+        mov bx, 2
+        cmp bx, [Array + 12]
+        je def
+        jmp again2 
+
+
+    _hh5:
+        mov bx, 2
+        cmp bx, [Array + 8]
+        je def
+        jmp again2
+
+
     _hh1:
         mov bx, 2
         cmp bx, [Array + 12]
@@ -1214,6 +1910,12 @@
 
         cmp bx, [Array + 8]
         je _hh3
+
+        cmp bx, [Array + 16]
+        je _hh4
+
+        cmp bx, [Array + 2]
+        je _hh5
 
         jmp again2
 
@@ -1237,6 +1939,28 @@
         je def
         jmp again2
 
+
+    _ii5:
+        mov bx, 2
+        cmp bx, [Array + 10]
+        je def
+        jmp again2
+
+
+    _ii6:
+        mov bx, 2
+        cmp bx, [Array + 8]
+        je def
+        jmp again2
+
+
+    _ii7:
+        mov bx, 2
+        cmp bx, [Array + 14]
+        je def
+        jmp again2
+
+
     _ii1:
         mov bx, 2
         cmp bx, [Array + 10]
@@ -1248,37 +1972,166 @@
         cmp bx, [Array + 14]
         je _ii4
 
+        cmp bx, [Array + 4]
+        je _ii5
+
+        cmp bx, [Array + 0]
+        je _ii6
+
+        cmp bx, [Array + 12]
+        je _ii7
+        
         jmp again2
 
     ;logic for "O's"
     logic2:
         mov bx, 2
-        cmp bx, [Array + 0]
-        je _aa1
-
-        cmp bx, [Array + 2]
-        je _bb1
-
-        cmp bx, [Array + 4]
-        je _cc1
-
-        cmp bx, [Array + 6]
-        je _dd1
-
-
-        cmp bx, [Array + 10]
-        je _ff1
-
-        cmp bx, [Array + 12]
-        je _gg1
-
-        cmp bx, [Array + 14]
-        je _hh1
-
         cmp bx, [Array + 16]
         je _ii1
 
+        mov bx, 2
+        cmp bx, [Array + 14]
+        je _hh1
+
+        mov bx, 2
+        cmp bx, [Array + 12]
+        je _gg1
+
+        mov bx, 2
+        cmp bx, [Array + 10]
+        je _ff1
+
+        mov bx, 2
+        cmp bx, [Array + 8]
+        je _ee1
+
+        mov bx, 2        
+        cmp bx, [Array + 6]
+        je _dd1
+
+        mov bx, 2
+        cmp bx, [Array + 4]
+        je _cc1
+
+        mov bx, 2
+        cmp bx, [Array + 2]
+        je _bb1
+
+        mov bx, 2
+        cmp bx, [Array + 0]
+        je _aa1
+
         jmp again2
+
+
+    logic6:
+        mov bx, 2
+        cmp bx, [Array + 16]
+        je _ii1
+
+        mov bx, 2
+        cmp bx, [Array + 14]
+        je _hh1
+
+        mov bx, 2
+        cmp bx, [Array + 12]
+        je _gg1
+
+        mov bx, 2
+        cmp bx, [Array + 10]
+        je _ff1
+
+        mov bx, 2
+        cmp bx, [Array + 8]
+        je _ee1
+
+        mov bx, 2        
+        cmp bx, [Array + 6]
+        je _dd1
+
+        mov bx, 2
+        cmp bx, [Array + 4]
+        je _cc1
+
+        mov bx, 2
+        cmp bx, [Array + 2]
+        je _bb1
+
+        jmp again2
+
+
+    logic7:
+        mov bx, 2
+        cmp bx, [Array + 16]
+        je _ii1
+
+        mov bx, 2
+        cmp bx, [Array + 14]
+        je _hh1
+
+        mov bx, 2
+        cmp bx, [Array + 12]
+        je _gg1
+
+        mov bx, 2
+        cmp bx, [Array + 10]
+        je _ff1
+
+        mov bx, 2
+        cmp bx, [Array + 8]
+        je _ee1
+
+        mov bx, 2        
+        cmp bx, [Array + 6]
+        je _dd1
+
+        mov bx, 2
+        cmp bx, [Array + 4]
+        je _cc1
+
+        mov bx, 2
+        cmp bx, [Array + 0]
+        je _aa1
+
+        jmp again2
+
+
+    logic8:
+        mov bx, 2
+        cmp bx, [Array + 16]
+        je _ii1
+
+        mov bx, 2
+        cmp bx, [Array + 14]
+        je _hh1
+
+        mov bx, 2
+        cmp bx, [Array + 12]
+        je _gg1
+
+        mov bx, 2
+        cmp bx, [Array + 10]
+        je _ff1
+
+        mov bx, 2
+        cmp bx, [Array + 8]
+        je _ee1
+
+        mov bx, 2        
+        cmp bx, [Array + 6]
+        je _dd1
+
+        mov bx, 2
+        cmp bx, [Array + 2]
+        je _bb1
+
+        mov bx, 2
+        cmp bx, [Array + 0]
+        je _aa1
+
+
+        jmp again2
+        
     ;-----------------------------------------------------------------------------------------------------------------
     ;end of Possibles of 'O'
 
@@ -1286,7 +2139,7 @@
     ;Printing winning statement of player 1, check 'draw_check'.
     abc:
         mov ax, player1won
-        mov dx, 1120
+        mov dx, 1770
         push ax
         push word [len_p1won]
         push dx
@@ -1298,7 +2151,7 @@
     ;Printing winning statement of player 2, check 'draw_check'.
     def:
         mov ax, player2won
-        mov dx, 1120
+        mov dx, 1770
         push ax
         push word [len_p2won]
         push dx
@@ -1306,7 +2159,7 @@
         mov word[draw_check], 1
         jmp drop
 
-
+    
 
 
     ;main label
@@ -1325,7 +2178,7 @@
             ;For player 1.
             ;-----------------------------------------------------------------------------------------------------------
             mov ax, player1message          ;"(Player 1, Enter a number: )"
-            mov dx, 960
+            mov dx, 1602
             push ax
             push word [len_p1massage]       ;length of string
             push dx
@@ -1364,7 +2217,7 @@
             ;For player 2.
             ;----------------------------------------------------------------------------------------------------------
             mov ax, player2message          ;"(Player 2, Enter a number: )"
-            mov dx, 960
+            mov dx, 1602
             push ax
             push word [len_p1massage]       ;length of string
             push dx
@@ -1405,7 +2258,7 @@
         ;draw printer
         draw_checker:
             mov ax, draw
-            mov dx, 1120
+            mov dx, 1770
             push ax
             push word [len_draw]
             push dx
@@ -1420,5 +2273,5 @@
 
         drop1:
 
-        mov ax, 0x4c00 
-        int 0x21 
+    mov ax, 0x4c00 
+    int 0x21
